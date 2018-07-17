@@ -13,6 +13,8 @@
 		8400F58620FDCE5800930341 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8400F58520FDCE5800930341 /* Assets.xcassets */; };
 		8400F58920FDCE5800930341 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8400F58720FDCE5800930341 /* LaunchScreen.storyboard */; };
 		8400F59420FDCE5800930341 /* XZTextKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400F59320FDCE5800930341 /* XZTextKitTests.swift */; };
+		8400F59F20FDD3F000930341 /* XZLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400F59E20FDD3F000930341 /* XZLabel.swift */; };
+		8400F5A020FDD3F000930341 /* XZLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8400F59E20FDD3F000930341 /* XZLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 		8400F58F20FDCE5800930341 /* XZTextKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XZTextKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8400F59320FDCE5800930341 /* XZTextKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZTextKitTests.swift; sourceTree = "<group>"; };
 		8400F59520FDCE5800930341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8400F59E20FDD3F000930341 /* XZLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,7 @@
 			children = (
 				8400F57E20FDCE5800930341 /* AppDelegate.swift */,
 				8400F58020FDCE5800930341 /* ViewController.swift */,
+				8400F59E20FDD3F000930341 /* XZLabel.swift */,
 				8400F58220FDCE5800930341 /* Main.storyboard */,
 				8400F58520FDCE5800930341 /* Assets.xcassets */,
 				8400F58720FDCE5800930341 /* LaunchScreen.storyboard */,
@@ -201,6 +205,7 @@
 			files = (
 				8400F58120FDCE5800930341 /* ViewController.swift in Sources */,
 				8400F57F20FDCE5800930341 /* AppDelegate.swift in Sources */,
+				8400F59F20FDD3F000930341 /* XZLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8400F5A020FDD3F000930341 /* XZLabel.swift in Sources */,
 				8400F59420FDCE5800930341 /* XZTextKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
