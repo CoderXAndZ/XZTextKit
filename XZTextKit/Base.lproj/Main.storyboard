@@ -19,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="euf-t4-0ow">
-                                <rect key="frame" x="0.0" y="344.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="0.0" y="344" width="0.0" height="0.0"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uh-vc-3Ya">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uh-vc-3Ya" customClass="XZLabel" customModule="XZTextKit" customModuleProvider="target">
                                         <string key="text">客户互动中心竭诚为您提供更安全、更便捷、更优质的服务体验，做您无微不至的理财管家。体验服务，始于初心！
 人工客服的工作时间为工作日的 8:30 -- 17:30，非工作时间您可以咨询在线智能客服！微信公众号：XXXX；微信订阅号：CALUB
 

@@ -8,34 +8,44 @@
 
 import UIKit
 
-@objc
-public protocol XZLabelDelegate: NSObjectProtocol {
-    /// 选中链接文本
-    ///
-    /// - parameter label: label
-    /// - parameter text:  选中的文本
-    @objc optional func labelDidSelectedLinkText(label: XZLabel, text: String)
-}
+//@objc
+//public protocol XZLabelDelegate: NSObjectProtocol {
+//    /// 选中链接文本
+//    ///
+//    /// - parameter label: label
+//    /// - parameter text:  选中的文本
+//    @objc optional func labelDidSelectedLinkText(label: XZLabel, text: String)
+//}
 
-public class XZLabel: UILabel {
-
-    public var linkTextColor = UIColor.blue
-    public var selectedBgColor = UIColor.lightGray
-    public weak var delegate: XZLabelDelegate?
+class XZLabel: UILabel {
     
+//    public var linkTextColor = UIColor.blue
+//    public var selectedBgColor = UIColor.lightGray
+//    public weak var delegate: XZLabelDelegate?
+//
+//
+//    private lazy var linkRanges = [NSRange]()
+//    private var selectedRange: NSRange?
     
-    private lazy var linkRanges = [NSRange]()
-    private var selectedRange: NSRange?
+    // MARK: - 重写属性,当属性变化时通知 textStorage
+    // 进一步体会 TextKit 接管底层的实现
+    // 一旦内容发生变化，需要让 textStorage 响应变化！
+    override var text: String? {
+        didSet {
+            // 调用重新准备文本内容
+            prepareTextContent()
+        }
+    }
     
     // 3.1、接管文本 MARK: - 构造函数
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         prepareTextSystem()
     }
     
     // 7.1 MARK: --- 交互
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         // 1.获取用户点击的位置
         guard let location = touches.first?.location(in: self) else {
@@ -47,12 +57,21 @@ public class XZLabel: UILabel {
         // 2.获取当前点中字符的索引
         let idx = layoutManager.glyphIndex(for: location, in: textContainer)
         
-        // 3. 39 -- 06：06
+        // 3.判断 idx 是否在 urls 的 ranges 范围内，如果在，就高亮
+        for r in urlRanges ?? [] {
+            if NSLocationInRange(idx, r) {
+                // 需要高亮
+                // 修改文本的字体属性
+                textStorage.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: r)
+                // 重绘，需要调用 setNeedsDisplay 函数，而不是 drawRect
+                setNeedsDisplay()
+            }
+        }
         
     }
     
     // 3.2 禁止我们用xib使用
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
         // 都用，
         super.init(coder: aDecoder)
@@ -60,7 +79,7 @@ public class XZLabel: UILabel {
         prepareTextSystem()
     }
     
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         // 2、指定绘制文本的区域:不做排他路径，直接等于 bounds.size
@@ -84,7 +103,7 @@ public class XZLabel: UILabel {
      */
     
     // 5.1 绘制文本 drawText drawRect
-    public override func drawText(in rect: CGRect) {
+    override func drawText(in rect: CGRect) {
         // 在一定区域绘制
 //        super.drawText(in: rect) 调用这个就达不到接管的效果了
         // 这个时候textStorage已经有内容了
@@ -130,7 +149,7 @@ private extension XZLabel {
         }
         
         // 6.1 遍历范围数组，设置 URL 文字的属性
-        print(urlRanges)
+//        print(urlRanges ?? [])
         
         for r in urlRanges ?? [] {
             textStorage.addAttributes(
@@ -149,8 +168,8 @@ private extension XZLabel {
     /// 返回 textStorage 中的 URL range数组
     var urlRanges: [NSRange]? {
         // 1.正则表达式
-        let patten = "[a-zA-Z]*://[a-zA-Z0-9/\\.]*"
-        
+//        let patten = "[a-zA-Z]*://[a-zA-Z0-9/\\.]*"
+        let patten = "[0-9]、(.*?)？"
         guard let regx = try? NSRegularExpression(pattern: patten, options: []) else {
             return nil;
         }
@@ -163,6 +182,9 @@ private extension XZLabel {
         for m in matches {
             ranges.append(m.range(at: 0))
         }
+        
+        print("当前范围是 === ",ranges)
+        
         return ranges
     }
     
